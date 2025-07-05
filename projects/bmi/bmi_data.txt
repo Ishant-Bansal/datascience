@@ -1,0 +1,2 @@
+ishu | weight: 50.0kg | height: 1.73m | bmi: 16.71 | category: Underweight
+ishu | weight: 90.0kg | height: 1.73m | bmi: 30.07 | category: Obese
