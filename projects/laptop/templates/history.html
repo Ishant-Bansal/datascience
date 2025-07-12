@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Laptop Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+        }
+        .container {
+            max-width: 900px;
+            margin: 60px auto 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            padding: 40px 30px 30px 30px;
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            color: #2575fc;
+            font-size: 2.5rem;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(24,90,157,0.08);
+        }
+        .history-table th, .history-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0eafc;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .history-table th {
+            background: #e0eafc;
+            color: #2575fc;
+            font-weight: 700;
+        }
+        .history-table tr:last-child td {
+            border-bottom: none;
+        }
+        .no-history {
+            text-align: center;
+            color: #888;
+            font-size: 1.15rem;
+            margin: 40px 0;
+        }
+        a {
+            display: block;
+            margin-top: 32px;
+            text-align: center;
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #6a11cb;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 10px 2vw; }
+            .history-table th, .history-table td { font-size: 0.95rem; }
+        }
+        @media (max-width: 600px) {
+            .history-table th, .history-table td { font-size: 0.85rem; padding: 6px 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Search History</h2>
+        {% if history and history|length > 0 %}
+        <div style="overflow-x:auto;">
+        <table class="history-table">
+            <thead>
+                <tr>
+                    {% for key in history[0].keys() %}
+                    <th>{{ key|replace('_', ' ')|title }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history %}
+                <tr>
+                    {% for value in entry.values() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% else %}
+        <div class="no-history">No search history yet.</div>
+        {% endif %}
+        <a href="/">&#8592; Back to Home</a>
+    </div>
+</body>
+</html>
